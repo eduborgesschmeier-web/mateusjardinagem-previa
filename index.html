@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mateus Jardinagem | Jardinagem empresarial e residencial em Caxias do Sul</title>
+<meta name="description" content="Manutenção de jardins, poda, revitalização e cuidado de áreas verdes para casas, condomínios e empresas em Caxias do Sul. Nota 5,0 no Google. Orçamento pelo WhatsApp.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F2A1D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0F2A1D; --moss:#1D4A32; --leaf:#7FB069; --leaf-2:#A9CF8E; --cream:#F6F2E9; --sand:#EAE1CC;
+  --gold:#C9A24B; --ink:#14201A; --muted:#5D6B62; --line:rgba(15,42,29,.12); --white:#fff;
+  --r:22px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{overflow-x:clip}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.serif{font-family:Fraunces,Georgia,serif}
+.wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--moss);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+h2.title{font-family:Fraunces,serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 18px}
+h2.title em{font-style:italic;color:var(--moss)}
+.lead{color:var(--muted);font-size:18px;max-width:560px}
+
+/* barra de progresso + faixa de prévia */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--leaf),var(--gold));z-index:200}
+.ribbon{background:var(--forest);color:#cfe3c3;font-size:13px;text-align:center;padding:8px 16px}
+.ribbon b{color:#fff;font-weight:600}
+
+/* navegação */
+nav{position:sticky;top:0;z-index:100;transition:.4s var(--ease)}
+nav .in{display:flex;align-items:center;justify-content:space-between;height:78px;transition:.4s var(--ease)}
+nav.scrolled{background:rgba(246,242,233,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+nav.scrolled .in{height:64px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:-.01em}
+.brand svg{width:36px;height:36px}
+.brand small{display:block;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.links{display:flex;gap:30px;font-size:14.5px;font-weight:500}
+.links a{position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:var(--moss);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .3s var(--ease),background .3s,box-shadow .3s;will-change:transform;cursor:pointer;border:0;font-family:inherit}
+.btn-dark{background:var(--forest);color:#fff;box-shadow:0 10px 30px -10px rgba(15,42,29,.6)}
+.btn-dark:hover{background:var(--moss)}
+.btn-ghost{border:1.5px solid var(--line);background:transparent}
+.btn-ghost:hover{background:#fff}
+.btn svg{width:18px;height:18px}
+.nav-cta{padding:11px 20px;font-size:14px}
+
+/* hero */
+.hero{position:relative;padding:40px 0 90px;overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{font-family:Fraunces,serif;font-weight:400;font-size:clamp(44px,6.4vw,92px);line-height:.98;letter-spacing:-.035em;margin:22px 0 26px}
+.hero h1 em{font-style:italic;color:var(--moss)}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top}
+.hero h1 .w>span{display:inline-block;transform:translateY(105%);animation:up 1s var(--ease) forwards}
+@keyframes up{to{transform:none}}
+.hero p.lead{margin-bottom:34px;opacity:0;animation:fade 1s .9s var(--ease) forwards}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fade 1s 1.05s var(--ease) forwards}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.chips{display:flex;gap:10px;margin-top:38px;flex-wrap:wrap;opacity:0;animation:fade 1s 1.2s var(--ease) forwards}
+.chip{font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--leaf)}
+.visual{position:relative;height:640px}
+.visual .main{position:absolute;inset:0 0 60px 50px;border-radius:200px 200px var(--r) var(--r);overflow:hidden;box-shadow:0 40px 80px -30px rgba(15,42,29,.45);clip-path:inset(100% 0 0 0 round 200px 200px 22px 22px);animation:reveal 1.4s .25s var(--ease) forwards}
+@keyframes reveal{to{clip-path:inset(0 0 0 0 round 200px 200px 22px 22px)}}
+.visual .main img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);animation:kb 14s ease-out forwards}
+@keyframes kb{to{transform:scale(1.02)}}
+.visual .small{position:absolute;left:0;bottom:0;width:210px;height:270px;border-radius:var(--r);overflow:hidden;border:7px solid var(--cream);box-shadow:0 30px 60px -20px rgba(0,0,0,.35);opacity:0;animation:fade 1s 1.1s var(--ease) forwards}
+.visual .small img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;right:-6px;top:60px;background:#fff;border-radius:18px;padding:16px 20px;box-shadow:0 20px 50px -20px rgba(15,42,29,.4);display:flex;gap:14px;align-items:center;opacity:0;animation:fade 1s 1.35s var(--ease) forwards,float 6s 2.4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.badge .n{font-family:Fraunces,serif;font-size:40px;line-height:1;color:var(--forest)}
+.badge .s{color:var(--gold);letter-spacing:2px;font-size:14px}
+.badge small{display:block;color:var(--muted);font-size:12.5px}
+#leaves{position:absolute;inset:0;pointer-events:none;z-index:1}
+.hero .wrap{position:relative;z-index:2}
+.blob{position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(127,176,105,.28),transparent 65%);right:-140px;top:-120px;filter:blur(10px);z-index:0}
+
+/* faixa que corre */
+.marquee{background:var(--forest);color:var(--sand);overflow:hidden;padding:22px 0;transform:rotate(-1.2deg);margin:0 -20px;position:relative;z-index:3}
+.marquee .track{display:flex;gap:46px;width:max-content;animation:mq 34s linear infinite}
+.marquee span{font-family:Fraunces,serif;font-size:28px;font-style:italic;white-space:nowrap;display:flex;align-items:center;gap:46px}
+.marquee span::after{content:"✦";font-style:normal;font-size:16px;color:var(--leaf)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* números */
+.stats{padding:110px 0 40px}
+.stats .grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.stat{padding:34px 28px 10px 0}
+.stat+.stat{padding-left:28px;border-left:1px solid var(--line)}
+.stat .big{font-family:Fraunces,serif;font-size:clamp(54px,7vw,96px);line-height:1;letter-spacing:-.04em;color:var(--forest)}
+.stat .big sup{font-size:.35em;color:var(--gold);vertical-align:top;margin-left:6px}
+.stat p{color:var(--muted);margin-top:10px;max-width:260px}
+
+/* serviços */
+section{position:relative}
+.services{padding:90px 0}
+.sv-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:50px;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:34px 30px 30px;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease);isolation:isolate}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(127,176,105,.22),transparent 45%);opacity:0;transition:opacity .4s;z-index:-1}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(15,42,29,.35)}
+.card:hover::before{opacity:1}
+.card .ic{width:54px;height:54px;border-radius:16px;background:var(--cream);display:grid;place-items:center;margin-bottom:26px;transition:transform .5s var(--ease),background .4s}
+.card:hover .ic{transform:rotate(-8deg) scale(1.08);background:var(--leaf-2)}
+.card .ic svg{width:28px;height:28px;stroke:var(--forest);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-family:Fraunces,serif;font-weight:500;font-size:25px;letter-spacing:-.01em;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15.5px}
+.card .num{position:absolute;right:26px;top:26px;font-family:Fraunces,serif;font-size:15px;color:#b9c2bb}
+
+/* para quem */
+.who{background:var(--forest);color:#e9efe5;padding:110px 0;border-radius:40px 40px 0 0;overflow:hidden}
+.who .eyebrow{color:var(--leaf-2)}
+.who h2.title em{color:var(--leaf-2)}
+.who .lead{color:#b7c6bb}
+.tabs{display:flex;gap:8px;margin:36px 0 40px;background:rgba(255,255,255,.06);padding:6px;border-radius:999px;width:max-content;max-width:100%;position:relative}
+.tab{position:relative;z-index:1;padding:12px 24px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;color:#cfe0c6;background:none;border:0;font-family:inherit;transition:color .3s}
+.tab.on{color:var(--forest)}
+.pill{position:absolute;top:6px;bottom:6px;left:6px;border-radius:999px;background:var(--leaf-2);transition:left .5s var(--ease),width .5s var(--ease)}
+.panes{display:grid}
+.pane{grid-area:1/1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s}
+.pane.on{opacity:1;visibility:visible;transform:none}
+.pane .ph{height:460px;border-radius:var(--r);overflow:hidden}
+.pane .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.pane.on .ph img{transform:scale(1.04)}
+.pane h3{font-family:Fraunces,serif;font-weight:400;font-size:clamp(30px,3.4vw,44px);line-height:1.1;margin-bottom:18px}
+.pane ul{list-style:none;margin-top:26px;display:grid;gap:14px}
+.pane li{display:flex;gap:14px;align-items:flex-start;color:#dfe8da}
+.pane li svg{flex:none;width:22px;height:22px;margin-top:2px;stroke:var(--leaf-2);fill:none;stroke-width:2}
+
+/* galeria */
+.gallery{padding:120px 0 100px;background:var(--forest)}
+.gallery .eyebrow{color:var(--leaf-2)}
+.gallery h2.title{color:#fff}
+.gallery h2.title em{color:var(--leaf-2)}
+.gallery .lead{color:#b7c6bb}
+.masonry{columns:3 300px;column-gap:16px;margin-top:50px}
+.shot{break-inside:avoid;margin-bottom:16px;border-radius:18px;overflow:hidden;position:relative;cursor:zoom-in}
+.shot img{width:100%;transition:transform 1s var(--ease),filter .6s}
+.shot:hover img{transform:scale(1.06)}
+.shot figcaption{position:absolute;left:14px;bottom:14px;background:rgba(15,42,29,.75);backdrop-filter:blur(6px);color:#fff;font-size:13px;padding:7px 12px;border-radius:999px;transform:translateY(10px);opacity:0;transition:.5s var(--ease)}
+.shot:hover figcaption{transform:none;opacity:1}
+.src{color:#8fa596;font-size:13px;margin-top:10px}
+.lightbox{position:fixed;inset:0;background:rgba(8,20,13,.92);display:grid;place-items:center;z-index:300;opacity:0;visibility:hidden;transition:.4s;padding:30px}
+.lightbox.on{opacity:1;visibility:visible}
+.lightbox img{max-height:86vh;max-width:92vw;border-radius:14px;transform:scale(.94);transition:transform .5s var(--ease)}
+.lightbox.on img{transform:none}
+.lightbox button{position:absolute;top:22px;right:22px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;font-size:22px;cursor:pointer}
+
+/* processo */
+.process{padding:120px 0}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px}
+.steps svg.line{position:absolute;top:34px;left:6%;width:88%;height:4px;overflow:visible}
+.steps svg.line path{stroke:var(--leaf);stroke-width:2;fill:none;stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2.2s var(--ease)}
+.steps.in svg.line path{stroke-dashoffset:0}
+.step{position:relative;text-align:left}
+.step .dot{width:68px;height:68px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-family:Fraunces,serif;font-size:26px;color:var(--forest);margin-bottom:24px;position:relative;z-index:1;transition:background .5s,color .5s,transform .5s var(--ease)}
+.steps.in .step .dot{background:var(--forest);color:#fff}
+.step h4{font-family:Fraunces,serif;font-weight:500;font-size:22px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:15px}
+
+/* avaliações */
+.reviews{padding:110px 0;background:var(--sand);overflow:hidden}
+.rv{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}
+.score{font-family:Fraunces,serif;font-size:150px;line-height:.9;color:var(--forest);letter-spacing:-.05em}
+.stars{color:var(--gold);font-size:26px;letter-spacing:6px;margin:8px 0}
+.quotes{position:relative;min-height:300px}
+.q{position:absolute;inset:0;opacity:0;transform:translateX(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.q.on{opacity:1;transform:none}
+.q blockquote{font-family:Fraunces,serif;font-size:clamp(24px,2.7vw,36px);line-height:1.3;font-weight:400;letter-spacing:-.01em}
+.q blockquote::before{content:"“";display:block;font-size:90px;line-height:.6;color:var(--leaf);margin-bottom:6px}
+.q cite{display:block;margin-top:24px;font-style:normal;font-weight:600}
+.q cite small{display:block;font-weight:400;color:var(--muted)}
+.dots{display:flex;gap:10px;margin-top:24px}
+.dots button{width:34px;height:4px;border-radius:4px;border:0;background:rgba(15,42,29,.18);cursor:pointer;position:relative;overflow:hidden}
+.dots button.on::after{content:"";position:absolute;inset:0;background:var(--forest);transform-origin:left;animation:bar 6s linear forwards}
+@keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* sobre */
+.about{padding:120px 0}
+.about .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+.about .ph{position:relative;border-radius:var(--r);overflow:hidden;height:600px}
+.about .ph img{width:100%;height:120%;object-fit:cover;will-change:transform}
+.about .tag{position:absolute;left:20px;bottom:20px;background:#fff;padding:14px 18px;border-radius:14px;font-weight:600;font-size:14px;display:flex;gap:10px;align-items:center}
+.about .tag i{width:10px;height:10px;border-radius:50%;background:#2ecc71;box-shadow:0 0 0 0 rgba(46,204,113,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 12px rgba(46,204,113,0)}100%{box-shadow:0 0 0 0 rgba(46,204,113,0)}}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px}
+.values div{border-top:1px solid var(--line);padding-top:18px}
+.values h5{font-family:Fraunces,serif;font-size:21px;font-weight:500;margin-bottom:6px}
+.values p{color:var(--muted);font-size:15px}
+
+/* orçamento */
+.quote{padding:0 0 120px}
+.qbox{background:var(--forest);color:#fff;border-radius:36px;padding:70px;display:grid;grid-template-columns:1fr 1fr;gap:60px;position:relative;overflow:hidden}
+.qbox::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(127,176,105,.35),transparent 65%);right:-160px;bottom:-200px}
+.qbox h2.title{color:#fff}
+.qbox h2.title em{color:var(--leaf-2)}
+.qbox .lead{color:#b7c6bb}
+.contact{margin-top:34px;display:grid;gap:16px;font-size:15.5px;color:#dfe8da}
+.contact div{display:flex;gap:12px;align-items:center}
+.contact svg{width:20px;height:20px;stroke:var(--leaf-2);fill:none;stroke-width:1.8}
+form{position:relative;display:grid;gap:14px}
+.f label{display:block;font-size:13px;color:#b7c6bb;margin-bottom:7px;font-weight:500}
+.f input,.f select,.f textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px 16px;color:#fff;font:inherit;font-size:15px;transition:border .3s,background .3s}
+.f select option{color:#14201A}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--leaf-2);background:rgba(255,255,255,.11)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg input{display:none}
+.seg label{margin:0;text-align:center;padding:13px 8px;border-radius:12px;border:1px solid rgba(255,255,255,.14);cursor:pointer;color:#dfe8da;font-size:14px;transition:.3s}
+.seg input:checked+label{background:var(--leaf-2);color:var(--forest);border-color:var(--leaf-2);font-weight:600}
+.btn-leaf{background:var(--leaf-2);color:var(--forest);justify-content:center;padding:17px}
+.btn-leaf:hover{background:#c3e2ab}
+.form-note{font-size:12.5px;color:#8fa596;text-align:center}
+
+/* faq */
+.faq{padding:0 0 120px}
+.faq .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+details{border-bottom:1px solid var(--line);padding:24px 0}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-family:Fraunces,serif;font-size:22px;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary span{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+details[open] summary span{transform:rotate(45deg);background:var(--forest);color:#fff}
+details p{color:var(--muted);margin-top:12px;max-width:620px}
+
+footer{background:var(--ink);color:#98a69c;padding:60px 0 40px;font-size:14px}
+footer .in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+footer .brand{color:#fff}
+footer .brand small{color:#98a69c}
+
+/* botão flutuante */
+.fab{position:fixed;right:22px;bottom:22px;z-index:150;width:62px;height:62px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(37,211,102,.7);transition:transform .4s var(--ease)}
+.fab:hover{transform:scale(1.08)}
+.fab svg{width:32px;height:32px;fill:#fff}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:ring 2.4s infinite}
+@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+
+/* revelação ao rolar */
+.rv-up{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv-up.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+@media (max-width:980px){
+  .links{display:none}
+  .hero .grid,.pane,.rv,.about .grid,.qbox,.faq .grid{grid-template-columns:1fr}
+  .visual{height:520px}
+  .cards{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:40px}
+  .steps svg.line{display:none}
+  .qbox{padding:44px 26px}
+  .about .ph{height:460px}
+  .score{font-size:110px}
+}
+@media (max-width:620px){
+  .wrap{width:calc(100% - 32px)}
+  .hero{padding-top:20px}
+  .visual{height:440px}
+  .visual .main{left:30px}
+  .visual .small{width:140px;height:180px}
+  .badge{top:20px;right:0;padding:12px 14px}
+  .badge .n{font-size:30px}
+  .cards{grid-template-columns:1fr}
+  .stats .grid{grid-template-columns:1fr}
+  .stat+.stat{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .steps{grid-template-columns:1fr}
+  .pane .ph{height:300px}
+  .tabs{width:100%}
+  .tab{flex:1;padding:11px 8px;font-size:14px}
+  .quotes{min-height:340px}
+  .nav-cta span{display:none}
+  .marquee span{font-size:22px}
+  .seg{grid-template-columns:1fr}
+  .masonry{columns:2;column-gap:10px}
+  .shot{margin-bottom:10px;border-radius:14px}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="ribbon"><b>Prévia</b> feita para a Mateus Jardinagem · textos e serviços ajustados com você antes de ir ao ar</div>
+
+<nav id="nav">
+  <div class="wrap in">
+    <a href="#" class="brand" aria-label="Mateus Jardinagem">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#0F2A1D"/><path d="M12 27c0-9 6-15 17-16-1 11-7 17-16 17" fill="#7FB069"/><path d="M12.5 27.5C16 23 20 19 25 15" stroke="#0F2A1D" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <span>Mateus Jardinagem<small>Empresarial e residencial</small></span>
+    </a>
+    <div class="links">
+      <a href="#servicos">Serviços</a><a href="#para-quem">Para quem</a><a href="#trabalhos">Trabalhos</a><a href="#avaliacoes">Avaliações</a><a href="#orcamento">Orçamento</a>
+    </div>
+    <a class="btn btn-dark nav-cta magnetic" href="#orcamento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Pedir orçamento</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <canvas id="leaves"></canvas>
+  <div class="blob"></div>
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">Jardinagem em Caxias do Sul</span>
+      <h1 id="h1">Jardins que <em>mudam</em> a cara da sua casa, condomínio ou empresa.</h1>
+      <p class="lead">Manutenção, poda e revitalização de áreas verdes, feitas com capricho e entregues com tudo limpo e organizado. Peça um orçamento pelo WhatsApp.</p>
+      <div class="ctas">
+        <a class="btn btn-dark magnetic" href="#orcamento">Pedir orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost magnetic" href="#trabalhos">Ver trabalhos</a>
+      </div>
+      <div class="chips"><span class="chip"><i></i>Casas</span><span class="chip"><i></i>Condomínios</span><span class="chip"><i></i>Empresas</span></div>
+    </div>
+    <div class="visual">
+      <div class="main"><img src="img/hero-casa.webp" alt="Jardim de fachada com canteiros floridos e árvores" id="heroImg"></div>
+      <div class="small"><img src="img/flores.webp" alt="Canteiro de flores coloridas"></div>
+      <div class="badge"><div class="n">5,0</div><div><div class="s">★★★★★</div><small>29 avaliações no Google</small></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Manutenção de jardins</span><span>Poda e cerca viva</span><span>Revitalização</span><span>Grama e gramado</span><span>Condomínios</span><span>Empresas</span><span>Canteiros e flores</span><span>Limpeza de terreno</span>
+  <span>Manutenção de jardins</span><span>Poda e cerca viva</span><span>Revitalização</span><span>Grama e gramado</span><span>Condomínios</span><span>Empresas</span><span>Canteiros e flores</span><span>Limpeza de terreno</span>
+</div></div>
+
+<section class="stats">
+  <div class="wrap grid">
+    <div class="stat rv-up"><div class="big"><span class="count" data-to="5" data-dec="1">0</span><sup>★</sup></div><p>Nota máxima no Google, dada por quem já contratou.</p></div>
+    <div class="stat rv-up d1"><div class="big"><span class="count" data-to="29">0</span></div><p>Avaliações de clientes de Caxias do Sul.</p></div>
+    <div class="stat rv-up d2"><div class="big"><span class="count" data-to="3">0</span></div><p>Tipos de espaço atendidos: casas, condomínios e empresas.</p></div>
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="wrap">
+    <div class="sv-head">
+      <div><span class="eyebrow rv-up">Serviços</span><h2 class="title rv-up d1">Tudo o que o seu jardim <em>precisa</em>, num lugar só.</h2></div>
+      <p class="lead rv-up d2">Do corte de grama de rotina à revitalização completa. Você combina a frequência e o serviço chega no dia certo.</p>
+    </div>
+    <div class="cards">
+      <article class="card rv-up"><span class="num">01</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 20v-5M10 20v-8M14 20v-6M18 20v-9"/></svg></div><h3>Manutenção de jardins</h3><p>Corte de grama, acabamento de bordas, limpeza de canteiros e recolhimento de resíduos.</p></article>
+      <article class="card rv-up d1"><span class="num">02</span><div class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div><h3>Poda</h3><p>Arbustos, cercas vivas, árvores de pequeno porte e plantas ornamentais, com forma e saúde.</p></article>
+      <article class="card rv-up d2"><span class="num">03</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c0-5 3-8 8-8 0 5-3 8-8 8ZM12 15c0-4-2.5-6-7-6 0 4 2.5 6 7 6Z"/></svg></div><h3>Revitalização</h3><p>Jardim cansado ganha vida nova: replantio, canteiros, pedras e acabamento.</p></article>
+      <article class="card rv-up"><span class="num">04</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6"/></svg></div><h3>Condomínios</h3><p>Manutenção periódica das áreas verdes, com agenda fixa e o mesmo cuidado em toda visita.</p></article>
+      <article class="card rv-up d1"><span class="num">05</span><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 13h18"/></svg></div><h3>Empresas</h3><p>Fachada e áreas externas sempre bem cuidadas, que mostram o padrão da sua empresa.</p></article>
+      <article class="card rv-up d2"><span class="num">06</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 20l2-9h6l2 9M12 11V4M9 7l3-3 3 3"/></svg></div><h3>Limpeza de terreno</h3><p>Retirada de mato, galhos e entulho verde, deixando o espaço pronto para usar.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="who" id="para-quem">
+  <div class="wrap">
+    <span class="eyebrow rv-up">Para quem</span>
+    <h2 class="title rv-up d1">Um cuidado diferente <em>para cada espaço.</em></h2>
+    <div class="tabs rv-up d2" role="tablist">
+      <span class="pill"></span>
+      <button class="tab on" data-t="0">Casa</button><button class="tab" data-t="1">Condomínio</button><button class="tab" data-t="2">Empresa</button>
+    </div>
+    <div class="panes">
+      <div class="pane on">
+        <div class="ph"><img src="img/cica.webp" alt="Jardim residencial com cica e canteiro de pedras"></div>
+        <div><h3>O jardim de casa do jeito que você imaginou.</h3><p class="lead">Do gramado ao canteiro da entrada, um jardim bonito o ano inteiro, sem você precisar se preocupar.</p>
+          <ul><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Manutenção na frequência que você escolher</li><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Poda, adubação e cuidado com as plantas</li><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Revitalização de canteiros e gramado</li></ul></div>
+      </div>
+      <div class="pane">
+        <div class="ph"><img src="img/palmeiras.webp" alt="Área verde com palmeiras e folhagens"></div>
+        <div><h3>Áreas comuns que valorizam o condomínio.</h3><p class="lead">Agenda fixa de manutenção e atenção aos detalhes que os moradores notam, como as avaliações de quem já contratou contam.</p>
+          <ul><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Visitas periódicas combinadas com o síndico</li><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Tudo limpo e organizado no final de cada visita</li><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Projetos de revitalização das áreas verdes</li></ul></div>
+      </div>
+      <div class="pane">
+        <div class="ph"><img src="img/hero-casa.webp" alt="Edifício com jardim e canteiros na fachada"></div>
+        <div><h3>A fachada é o primeiro cartão de visita.</h3><p class="lead">Áreas externas bem cuidadas passam confiança para clientes e equipe, todos os dias.</p>
+          <ul><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Manutenção de jardins empresariais</li><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Canteiros e floreiras de entrada</li><li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Atendimento com horário combinado</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="trabalhos">
+  <div class="wrap">
+    <span class="eyebrow rv-up">Trabalhos</span>
+    <h2 class="title rv-up d1">O capricho aparece <em>nos detalhes.</em></h2>
+    <p class="lead rv-up d2">Algumas fotos de jardins, canteiros e plantas. Clique para ampliar.</p>
+    <div class="masonry">
+      <figure class="shot rv-up"><img src="img/hero-casa.webp" alt="Jardim com canteiros floridos em frente a edifício" loading="lazy"><figcaption>Canteiros e paisagismo</figcaption></figure>
+      <figure class="shot rv-up d1"><img src="img/flores.webp" alt="Floreira com flores coloridas" loading="lazy"><figcaption>Floreiras</figcaption></figure>
+      <figure class="shot rv-up d2"><img src="img/cica.webp" alt="Cica com canteiro de pedras" loading="lazy"><figcaption>Jardim residencial</figcaption></figure>
+      <figure class="shot rv-up"><img src="img/mateus-poda.webp" alt="Mateus fazendo poda" loading="lazy"><figcaption>Poda</figcaption></figure>
+      <figure class="shot rv-up d1"><img src="img/grama.webp" alt="Gramado bem aparado" loading="lazy"><figcaption>Gramado</figcaption></figure>
+      <figure class="shot rv-up d2"><img src="img/palmeiras.webp" alt="Palmeiras e folhagens" loading="lazy"><figcaption>Áreas verdes</figcaption></figure>
+      <figure class="shot rv-up"><img src="img/mudas.webp" alt="Mudas de aspargo ornamental" loading="lazy"><figcaption>Mudas</figcaption></figure>
+      <figure class="shot rv-up d1"><img src="img/zamioculca.webp" alt="Zamioculcas em vasos" loading="lazy"><figcaption>Plantas</figcaption></figure>
+    </div>
+    <p class="src">Fotos publicadas no perfil do Google.</p>
+  </div>
+</section>
+
+<section class="process" id="como">
+  <div class="wrap">
+    <span class="eyebrow rv-up">Como funciona</span>
+    <h2 class="title rv-up d1">Do primeiro contato ao <em>jardim pronto.</em></h2>
+    <div class="steps" id="steps">
+      <svg class="line" viewBox="0 0 1000 4" preserveAspectRatio="none"><path d="M0 2 H1000"/></svg>
+      <div class="step rv-up"><div class="dot">1</div><h4>Chame no WhatsApp</h4><p>Mande fotos do espaço e conte o que você precisa.</p></div>
+      <div class="step rv-up d1"><div class="dot">2</div><h4>Visita e orçamento</h4><p>Valor, serviço e frequência combinados antes de começar.</p></div>
+      <div class="step rv-up d2"><div class="dot">3</div><h4>Mãos à obra</h4><p>Serviço feito com pontualidade, agilidade e capricho.</p></div>
+      <div class="step rv-up d3"><div class="dot">4</div><h4>Tudo limpo</h4><p>Resíduos recolhidos e espaço organizado no final.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="avaliacoes">
+  <div class="wrap rv">
+    <div class="rv-up">
+      <span class="eyebrow">Avaliações no Google</span>
+      <div class="score" style="margin-top:20px">5,0</div>
+      <div class="stars">★★★★★</div>
+      <p class="lead">Nota máxima em 29 avaliações. Abaixo, as palavras de quem já contratou.</p>
+    </div>
+    <div class="rv-up d1">
+      <div class="quotes">
+        <div class="q on"><blockquote>O nosso condomínio foi muito bem atendido nos serviços de manutenção do nosso pequeno jardim. Trabalho realizado com muita dedicação deixando tudo limpo e organizado.</blockquote><cite>Silvia<small>Avaliação no Google</small></cite></div>
+        <div class="q"><blockquote>Fiquei muito satisfeita com o serviço dos meninos. São pontuais, ágeis, atenciosos e o preço é justo. Recomendo!</blockquote><cite>Victória<small>Avaliação no Google</small></cite></div>
+        <div class="q"><blockquote>Disponibilidade, agilidade e capricho são características dos profissionais!</blockquote><cite>Melissa<small>Avaliação no Google</small></cite></div>
+      </div>
+      <div class="dots"><button class="on" aria-label="Avaliação 1"></button><button aria-label="Avaliação 2"></button><button aria-label="Avaliação 3"></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap grid">
+    <div class="ph rv-up"><img src="img/mateus-poda.webp" alt="Mateus trabalhando em um jardim" id="aboutImg"><div class="tag"><i></i>Atendimento direto com o Mateus</div></div>
+    <div>
+      <span class="eyebrow rv-up">Quem cuida</span>
+      <h2 class="title rv-up d1">Quem faz o serviço é quem <em>fala com você.</em></h2>
+      <p class="lead rv-up d2">Sem intermediário: você conversa direto com o Mateus, combina o que precisa e sabe quem vai estar no seu jardim.</p>
+      <div class="values">
+        <div class="rv-up"><h5>Pontualidade</h5><p>Chega no horário combinado.</p></div>
+        <div class="rv-up d1"><h5>Capricho</h5><p>Acabamento cuidadoso em cada detalhe.</p></div>
+        <div class="rv-up d2"><h5>Organização</h5><p>Tudo limpo quando o serviço termina.</p></div>
+        <div class="rv-up d3"><h5>Preço justo</h5><p>Valor combinado antes de começar.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote" id="orcamento">
+  <div class="wrap">
+    <div class="qbox rv-up">
+      <div style="position:relative">
+        <span class="eyebrow" style="color:var(--leaf-2)">Orçamento</span>
+        <h2 class="title">Conte o que o seu jardim <em>precisa.</em></h2>
+        <p class="lead">Preencha em 30 segundos. A mensagem abre pronta no WhatsApp do Mateus.</p>
+        <div class="contact">
+          <div><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>(54) 99274-5132</div>
+          <div><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>R. Justina Casagrande, 81, Centenário, Caxias do Sul</div>
+        </div>
+      </div>
+      <form id="form">
+        <div class="f"><label for="nome">Seu nome</label><input id="nome" required placeholder="Como podemos te chamar?"></div>
+        <div class="f"><label>Tipo de espaço</label>
+          <div class="seg"><input type="radio" name="tipo" id="t1" value="casa" checked><label for="t1">Casa</label><input type="radio" name="tipo" id="t2" value="condomínio"><label for="t2">Condomínio</label><input type="radio" name="tipo" id="t3" value="empresa"><label for="t3">Empresa</label></div></div>
+        <div class="f"><label for="serv">Serviço</label><select id="serv"><option>Manutenção de jardim</option><option>Poda</option><option>Revitalização</option><option>Limpeza de terreno</option><option>Outro</option></select></div>
+        <div class="f"><label for="bairro">Bairro</label><input id="bairro" placeholder="Ex.: Centro, Exposição, Pio X"></div>
+        <div class="f"><label for="msg">Conte um pouco (opcional)</label><textarea id="msg" rows="3" placeholder="Tamanho do espaço, frequência, o que precisa..."></textarea></div>
+        <button class="btn btn-leaf magnetic" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8.1 8.1 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.8-.5ZM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2Z"/></svg>Enviar pelo WhatsApp</button>
+        <p class="form-note">Sem compromisso. Você recebe o orçamento antes de qualquer serviço.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap grid">
+    <div><span class="eyebrow rv-up">Dúvidas</span><h2 class="title rv-up d1">Perguntas <em>frequentes.</em></h2></div>
+    <div class="rv-up d2">
+      <details open><summary>Vocês atendem condomínios e empresas?<span>+</span></summary><p>Sim. Casas, condomínios e empresas, com manutenção avulsa ou periódica combinada com você.</p></details>
+      <details><summary>Como peço um orçamento?<span>+</span></summary><p>Pelo formulário desta página ou direto no WhatsApp. Mande fotos do espaço para agilizar.</p></details>
+      <details><summary>Preciso estar em casa no dia do serviço?<span>+</span></summary><p>Isso é combinado no orçamento, conforme o acesso ao jardim.</p></details>
+      <details><summary>Vocês levam os resíduos embora?<span>+</span></summary><p>O espaço fica limpo e organizado no final. O recolhimento de galhos e grama é combinado no orçamento.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap in">
+    <div class="brand"><svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#7FB069"/><path d="M12 27c0-9 6-15 17-16-1 11-7 17-16 17" fill="#0F2A1D"/></svg><span>Mateus Jardinagem<small>Caxias do Sul, RS</small></span></div>
+    <div>R. Justina Casagrande, 81, Centenário · (54) 99274-5132</div>
+    <div>© 2026 Mateus Jardinagem</div>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/5554992745132?text=Ol%C3%A1%2C%20Mateus!%20Vi%20o%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8.1 8.1 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.8-.5ZM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2Z"/></svg></a>
+
+<div class="lightbox" id="lb"><button aria-label="Fechar">×</button><img alt=""></div>
+
+<script>
+(()=>{
+  const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+
+  // título palavra por palavra
+  const h1=$('#h1');
+  const walk=(node,acc)=>{node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(t=>acc.push({t,em:false}))}else{acc.push({t:n.textContent,em:true})}});return acc};
+  const parts=walk(h1,[]);h1.innerHTML='';let i=0;
+  parts.forEach(p=>{if(/^\s+$/.test(p.t)){h1.append(' ');return}if(!p.t)return;const w=document.createElement('span');w.className='w';const s=document.createElement(p.em?'em':'span');s.textContent=p.t;const inner=document.createElement('span');inner.style.animationDelay=(0.15+i*0.06)+'s';inner.append(s);w.append(inner);h1.append(w);i++});
+
+  // navegação e barra de progresso
+  const nav=$('#nav'),bar=$('#progress');
+  const onScroll=()=>{const y=scrollY;nav.classList.toggle('scrolled',y>40);const h=document.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?y/h*100:0)+'%';
+    const hi=$('#heroImg');if(hi&&y<900)hi.parentElement.style.transform=`translateY(${y*0.08}px)`;
+    const ai=$('#aboutImg');if(ai){const r=ai.parentElement.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight+r.height)));ai.style.transform=`translateY(${-p*r.height*0.2}px)`}};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // revelação ao rolar + números
+  const count=el=>{const to=+el.dataset.to,dec=+(el.dataset.dec||0),t0=performance.now(),d=1600;const f=t=>{const p=Math.min((t-t0)/d,1),e=1-Math.pow(1-p,4);el.textContent=(to*e).toFixed(dec).replace('.',',');if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');$$('.count',e.target).forEach(count);io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  $$('.rv-up').forEach(el=>io.observe(el));
+  const st=$('#steps');new IntersectionObserver(([e],o)=>{if(e.isIntersecting){st.classList.add('in');o.disconnect()}},{threshold:.4}).observe(st);
+
+  // brilho que segue o mouse nos cartões
+  $$('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')}));
+
+  // botões magnéticos
+  if(matchMedia('(pointer:fine)').matches){$$('.magnetic').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.28}px)`});b.addEventListener('pointerleave',()=>b.style.transform='')})}
+
+  // abas "para quem"
+  const tabs=$$('.tab'),panes=$$('.pane'),pill=$('.pill');
+  const setPill=t=>{pill.style.left=t.offsetLeft+'px';pill.style.width=t.offsetWidth+'px'};
+  tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('on'));t.classList.add('on');panes.forEach((p,k)=>p.classList.toggle('on',k==t.dataset.t));setPill(t)}));
+  addEventListener('load',()=>setPill($('.tab.on')));addEventListener('resize',()=>setPill($('.tab.on')));setTimeout(()=>setPill($('.tab.on')),300);
+
+  // galeria ampliada
+  const lb=$('#lb'),lbi=$('img',lb);
+  $$('.shot').forEach(s=>s.addEventListener('click',()=>{lbi.src=$('img',s).src;lbi.alt=$('img',s).alt;lb.classList.add('on')}));
+  lb.addEventListener('click',()=>lb.classList.remove('on'));addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+
+  // avaliações que trocam sozinhas
+  const qs=$$('.q'),ds=$$('.dots button');let cur=0,timer;
+  const show=k=>{qs.forEach((q,j)=>q.classList.toggle('on',j===k));ds.forEach((d,j)=>{d.classList.remove('on');if(j===k){void d.offsetWidth;d.classList.add('on')}});cur=k;clearTimeout(timer);timer=setTimeout(()=>show((cur+1)%qs.length),6000)};
+  ds.forEach((d,k)=>d.addEventListener('click',()=>show(k)));show(0);
+
+  // formulário abre o WhatsApp
+  $('#form').addEventListener('submit',e=>{e.preventDefault();const tipo=$('input[name=tipo]:checked').value;
+    const txt=`Olá, Mateus! Meu nome é ${$('#nome').value.trim()}. Gostaria de um orçamento de ${$('#serv').value.toLowerCase()} para ${tipo==='casa'?'minha casa':tipo==='empresa'?'uma empresa':'um condomínio'}${$('#bairro').value.trim()?' no bairro '+$('#bairro').value.trim():''}.${$('#msg').value.trim()?' '+$('#msg').value.trim():''}`;
+    window.open('https://wa.me/5554992745132?text='+encodeURIComponent(txt),'_blank')});
+
+  // folhas caindo no topo
+  const cv=$('#leaves'),cx=cv.getContext('2d');let W,H,leaves=[];
+  const size=()=>{const r=cv.parentElement.getBoundingClientRect();W=cv.width=r.width*devicePixelRatio;H=cv.height=r.height*devicePixelRatio;cv.style.width=r.width+'px';cv.style.height=r.height+'px'};
+  size();addEventListener('resize',size);
+  const N=innerWidth<620?7:14,cols=['#7FB069','#A9CF8E','#5E9150','#C9A24B'];
+  for(let k=0;k<N;k++)leaves.push({x:Math.random()*W,y:Math.random()*H-H,s:(8+Math.random()*10)*devicePixelRatio,v:(.25+Math.random()*.5)*devicePixelRatio,a:Math.random()*6.28,va:(Math.random()-.5)*.02,sw:Math.random()*6.28,c:cols[k%4],o:.25+Math.random()*.35});
+  const leaf=(l)=>{cx.save();cx.translate(l.x,l.y);cx.rotate(l.a);cx.globalAlpha=l.o;cx.fillStyle=l.c;cx.beginPath();cx.moveTo(0,-l.s);cx.quadraticCurveTo(l.s*.8,0,0,l.s);cx.quadraticCurveTo(-l.s*.8,0,0,-l.s);cx.fill();cx.restore()};
+  const tick=()=>{cx.clearRect(0,0,W,H);leaves.forEach(l=>{l.sw+=.012;l.y+=l.v;l.x+=Math.sin(l.sw)*.6*devicePixelRatio;l.a+=l.va;if(l.y>H+30){l.y=-30;l.x=Math.random()*W}leaf(l)});requestAnimationFrame(tick)};tick();
+})();
+</script>
+</body>
+</html>
